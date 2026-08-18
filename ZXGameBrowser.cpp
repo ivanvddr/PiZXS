@@ -390,19 +390,19 @@ void ZXGameBrowser::draw() {
 }
 
 void ZXGameBrowser::drawBackground() {
-    tft->fillScreen(TFT_PURPLE);
+    tft->fillScreen(TFT_LIGHTGREY);
 }
 
 void ZXGameBrowser::drawLogo() {
     if (!hasLogo) {
-        tft->setTextColor(TFT_CYAN);
+        tft->setTextColor(TFT_BLACK);
         tft->setTextSize(2);
         tft->setTextDatum(TL_DATUM);
-        tft->drawString("piMSX", 5, 5);
+        tft->drawString("PiZXS", 5, 5);
         return;
     }
     tft->setSwapBytes(true);
-    tft->pushImage(5, 5, logoWidth, logoHeight, logo, 0x0000);
+    tft->pushImage(5, 5, logoWidth, logoHeight, logo, 0xFFFF);
     tft->setSwapBytes(false);
 }
 
@@ -412,7 +412,7 @@ void ZXGameBrowser::drawGameImage() {
     const int imgX = (320 - imgWidth) / 2;
     const int imgY = 40;
     
-    tft->fillRect(imgX, imgY, imgWidth, imgHeight, TFT_BLUE);
+    tft->fillRect(imgX, imgY, imgWidth, imgHeight, TFT_LIGHTGREY);
     
     if (totalGames == 0 || currentFile[0] == '\0') return;
     
@@ -426,8 +426,8 @@ void ZXGameBrowser::drawGameImage() {
     }
     
     if (!fileExists(imagePath)) {
-        tft->drawRect(imgX, imgY, imgWidth, imgHeight, TFT_CYAN);
-        tft->setTextColor(TFT_CYAN);
+        tft->drawRect(imgX, imgY, imgWidth, imgHeight, TFT_BLACK);
+        tft->setTextColor(TFT_BLACK);
         tft->setTextSize(2);
         tft->setTextDatum(MC_DATUM);
         tft->drawString("NO IMAGE", 160, imgY + imgHeight/2);
@@ -446,17 +446,17 @@ void ZXGameBrowser::drawGameName() {
     
     String displayName = getDisplayName(currentFile);
     
-    tft->setTextColor(TFT_CYAN);
+    tft->setTextColor(TFT_BLACK);
     tft->setTextSize(2);
     tft->setTextDatum(TC_DATUM);
-    tft->fillRect(0, 200, 320, 20, TFT_PURPLE);
+    tft->fillRect(0, 200, 320, 20, TFT_LIGHTGREY);
     tft->drawString(displayName, 160, 200);
 }
 
 void ZXGameBrowser::drawArrows() {
     if (totalGames <= 1) return;
     
-    tft->setTextColor(TFT_WHITE);
+    tft->setTextColor(TFT_BLACK);
     tft->setTextSize(4);
     tft->setTextDatum(MC_DATUM);
     tft->drawString("<", 20, 120);
@@ -465,13 +465,13 @@ void ZXGameBrowser::drawArrows() {
 
 void ZXGameBrowser::drawCredits() {
     tft->setTextSize(1);
-    tft->setTextColor(TFT_CYAN);
+    tft->setTextColor(TFT_BLACK);
     tft->setTextDatum(BR_DATUM);
     tft->drawString("@IV ZX Spectrum 48K emulator", 315, 235);
 }
 
 void ZXGameBrowser::showError(const char* msg) {
-    tft->fillScreen(TFT_BLUE);
+    tft->fillScreen(TFT_LIGHTGREY);
     tft->setTextColor(TFT_RED);
     tft->setTextSize(2);
     tft->setTextDatum(MC_DATUM);
