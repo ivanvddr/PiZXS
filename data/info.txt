@@ -1,2 +1,2 @@
 Place the original ZX Spectrum 48K rom (bios+basic) in this folder and name it rom48.rom
-Upload the file into flash with LittleFS tool
+Upload the file into pico flash with LittleFS tool
